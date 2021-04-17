@@ -30,17 +30,17 @@ async def song(client, message):
     if args.startswith(" "):
         await message.reply("Enter a song name. Check /help")
         return ""
-    status = await message.reply("🔎Searching song from YouTube 📺.. Please wait some time ⏳️ © @Mr_Dark_Prince ")
+    status = await message.reply("🔎 Mencari lagu dari YouTube... Silahkan tunggu beberapa saat ⏳️ ")
     video_link = yt_search(args)
     if not video_link:
-        await status.edit("😔Song not found.")
+        await status.edit("😔 Lagu tidak di temukan.")
         return ""
     yt = YouTube(video_link)
     audio = yt.streams.filter(only_audio=True).first()
     try:
         download = audio.download(filename=f"{str(user_id)}")
     except Exception as ex:
-        await status.edit("Failed to download song")
+        await status.edit("Gagal mendownload lagu")
         LOGGER.error(ex)
         return ""
     rename = os.rename(download, f"{str(user_id)}.mp3")
