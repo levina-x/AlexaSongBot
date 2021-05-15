@@ -8,7 +8,7 @@ from config import OWNER_ID
 
 @app.on_message(filters.user(OWNER_ID) & filters.command("eval"))
 async def eval(client, message):
-    status_message = await message.reply_text("Memproses...")
+    status_message = await message.reply_text("🔄 memproses...")
     cmd = message.text.split(" ", maxsplit=1)[1]
 
     reply_to_ = message
